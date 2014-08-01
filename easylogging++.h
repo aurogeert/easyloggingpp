@@ -554,7 +554,7 @@ namespace threading {
 //!
 //! To take care of shared resources in multi-threaded application. Used internally, you should not need it.
 //!
-class Mutex {
+class Mutex: private internal::NoCopy {
 public:
 #if _ELPP_ASSEMBLY_SUPPORTED
 #   if defined(__GNUC__) && (defined(__i386__) || defined(__x86_64__))
@@ -1641,7 +1641,6 @@ public:
 private:
     std::string configurationFile_;
     bool isFromFile_;
-    internal::threading::Mutex mutex_;
 
     inline void set(internal::Configuration* conf_) {
         if (conf_ == NULL) return;
